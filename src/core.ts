@@ -10,9 +10,9 @@ import { randomRange } from './utils'
 import { createTerminalRenderer } from './plugins'
 
 export interface TypeItRenderer {
-  split(str: string): Promisable<TypeItemOption[]>
-  render(item: TypeItemOption, ctx: TypeIt): Promisable<void>
-  getDelay?(item: TypeItemOption): Optional<number>
+  split(str: string): Promisable<TypeItem[]>
+  render(item: TypeItem, ctx: TypeIt): Promisable<void>
+  getDelay?(item: TypeItem): Optional<number>
   clear?(): void
 }
 
@@ -22,7 +22,7 @@ export enum TypeItemType {
   Text = 'text',
 }
 
-export interface TypeItemOption {
+export interface TypeItem {
   type: TypeItemType | string
   content: string
   delay?: number
@@ -37,7 +37,7 @@ export interface TypeItOption {
 }
 
 export class TypeIt {
-  queue: TypeItemOption[] = []
+  queue: TypeItem[] = []
 
   isPlaying = false
 
@@ -128,7 +128,7 @@ export class TypeIt {
     this.#ins?.resolve()
   }
 
-  #getDelay(item: TypeItemOption) {
+  #getDelay(item: TypeItem) {
     const delay = item.delay ?? this.renderer.getDelay?.(item)
 
     if (!is.nullish(delay)) {

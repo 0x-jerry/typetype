@@ -1,4 +1,4 @@
-import { TypeItemOption, TypeItemType, TypeItRenderer } from '../core'
+import { TypeItem, TypeItemType, TypeItRenderer } from '../core'
 
 export function createHtmlRenderer() {
   const opt = {
@@ -8,7 +8,7 @@ export function createHtmlRenderer() {
 
   const core: TypeItRenderer = {
     split(str) {
-      const items: TypeItemOption[] = []
+      const items: TypeItem[] = []
 
       const d = document.createElement('div')
       d.innerHTML = str
@@ -41,7 +41,7 @@ export function createHtmlRenderer() {
   }
 }
 
-function splitHtml(node: Node, items: TypeItemOption[]) {
+function splitHtml(node: Node, items: TypeItem[]) {
   if (node.nodeType === document.TEXT_NODE) {
     const nodes = (node.textContent || '').split('').map((n) => {
       return {

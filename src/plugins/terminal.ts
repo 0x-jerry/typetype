@@ -1,11 +1,11 @@
-import { TypeItRenderer, TypeItemOption, TypeItemType } from '../core'
+import { TypeItRenderer, TypeItem, TypeItemType } from '../core'
 
 export function createTerminalRenderer(): TypeItRenderer {
   const core: TypeItRenderer = {
     split(str: string) {
       const isTerminalStyleChar = /^(\x1b\[\d+m)+/g
 
-      const items: TypeItemOption[] = []
+      const items: TypeItem[] = []
 
       const ctx = {
         cursor: 0,
@@ -48,7 +48,7 @@ export function createTerminalRenderer(): TypeItRenderer {
 
       return items
     },
-    render(item: TypeItemOption) {
+    render(item: TypeItem) {
       process.stdout.write(item.content)
     },
   }
