@@ -9,9 +9,9 @@ import {
 import { randomRange } from './utils'
 import { createTerminalRenderer } from './plugins'
 
-export interface TypeItRenderer {
+export interface TickTickRenderer {
   split(str: string): Promisable<TypeItem[]>
-  render(item: TypeItem, ctx: TypeIt): Promisable<void>
+  render(item: TypeItem, ctx: TickTick): Promisable<void>
   getDelay?(item: TypeItem): Optional<number>
   clear?(): void
 }
@@ -28,15 +28,15 @@ export interface TypeItem {
   delay?: number
 }
 
-export interface TypeItOption {
-  renderer?: TypeItRenderer
+export interface TickTickOption {
+  renderer?: TickTickRenderer
   /**
    * @default true
    */
   autoPlay?: boolean
 }
 
-export class TypeIt {
+export class TickTick {
   queue: TypeItem[] = []
 
   isPlaying = false
@@ -52,11 +52,11 @@ export class TypeIt {
     return this.#ins?.instance
   }
 
-  renderer: TypeItRenderer
+  renderer: TickTickRenderer
 
-  option: Required<Omit<TypeItOption, 'renderer'>>
+  option: Required<Omit<TickTickOption, 'renderer'>>
 
-  constructor(opt: TypeItOption = {}) {
+  constructor(opt: TickTickOption = {}) {
     this.renderer = opt.renderer || createTerminalRenderer()
 
     this.option = {

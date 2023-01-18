@@ -1,4 +1,4 @@
-import { TypeItem, TypeItemType, TypeItRenderer } from '../core'
+import { TypeItem, TypeItemType, TickTickRenderer } from '../core'
 
 export function createHtmlRenderer() {
   const opt = {
@@ -6,7 +6,7 @@ export function createHtmlRenderer() {
     cache: '',
   }
 
-  const core: TypeItRenderer = {
+  const core: TickTickRenderer = {
     split(str) {
       const items: TypeItem[] = []
 

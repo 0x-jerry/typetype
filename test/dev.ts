@@ -1,6 +1,6 @@
-import { TypeIt, createTerminalRenderer } from '../src'
+import { TickTick, createTerminalRenderer } from '../src'
 
-const ti = new TypeIt({
+const ti = new TickTick({
   renderer: createTerminalRenderer(),
 })
 

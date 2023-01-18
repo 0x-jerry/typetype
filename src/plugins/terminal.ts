@@ -1,7 +1,7 @@
-import { TypeItRenderer, TypeItem, TypeItemType } from '../core'
+import { TickTickRenderer, TypeItem, TypeItemType } from '../core'
 
-export function createTerminalRenderer(): TypeItRenderer {
-  const core: TypeItRenderer = {
+export function createTerminalRenderer(): TickTickRenderer {
+  const core: TickTickRenderer = {
     split(str: string) {
       const isTerminalStyleChar = /^(\x1b\[\d+m)+/g
 
