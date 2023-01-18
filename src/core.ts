@@ -1,6 +1,5 @@
 import {
   Promisable,
-  PluginManager,
   PromiseInstance,
   createPromiseInstance,
   sleep,
@@ -38,8 +37,6 @@ export interface TypeItOption {
 }
 
 export class TypeIt {
-  pm = new PluginManager()
-
   queue: TypeItemOption[] = []
 
   isPlaying = false
