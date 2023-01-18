@@ -1,7 +1,7 @@
 import { TypeItRenderer, TypeItemOption, TypeItemType } from '../core'
 
 export function createTerminalRenderer(): TypeItRenderer {
-  const renderer: TypeItRenderer = {
+  const core: TypeItRenderer = {
     split(str: string) {
       const isTerminalStyleChar = /^(\x1b\[\d+m)+/g
 
@@ -53,5 +53,5 @@ export function createTerminalRenderer(): TypeItRenderer {
     },
   }
 
-  return renderer
+  return core
 }
