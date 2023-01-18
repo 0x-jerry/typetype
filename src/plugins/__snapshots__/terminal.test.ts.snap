@@ -1,0 +1,54 @@
+// Vitest Snapshot v1
+
+exports[`terminal renderer > should split string correctly 1`] = `
+[
+  {
+    "content": "h",
+    "type": "text",
+  },
+  {
+    "content": "e",
+    "type": "text",
+  },
+  {
+    "content": "l",
+    "type": "text",
+  },
+  {
+    "content": "l",
+    "type": "text",
+  },
+  {
+    "content": " ",
+    "type": "space",
+  },
+  {
+    "content": "o",
+    "type": "text",
+  },
+  {
+    "content": " ",
+    "type": "space",
+  },
+  {
+    "content": "[1m",
+    "type": "invisible",
+  },
+  {
+    "content": "1",
+    "type": "text",
+  },
+  {
+    "content": "2",
+    "type": "text",
+  },
+  {
+    "content": "3",
+    "type": "text",
+  },
+  {
+    "content": "[22m",
+    "type": "invisible",
+  },
+]
+`;
