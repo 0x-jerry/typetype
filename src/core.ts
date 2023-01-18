@@ -12,8 +12,9 @@ import { createTerminalRenderer } from './plugins'
 
 export interface TypeItRenderer {
   split(str: string): Promisable<TypeItemOption[]>
-  render(item: TypeItemOption): Promisable<void>
+  render(item: TypeItemOption, ctx: TypeIt): Promisable<void>
   getDelay?(item: TypeItemOption): Optional<number>
+  clear?(): void
 }
 
 export enum TypeItemType {
@@ -45,6 +46,11 @@ export class TypeIt {
 
   #ins?: PromiseInstance<void>
 
+  /**
+   * current playing index
+   */
+  cursor = 0
+
   get playing() {
     return this.#ins?.instance
   }
@@ -68,10 +74,13 @@ export class TypeIt {
   play() {
     if (this.isPlaying) return
 
+    this.#prepareForPlay()
     this.#play()
   }
 
   async type(str: string) {
+    this.clear()
+
     if (this.option.autoPlay) {
       this.#prepareForPlay()
     }
@@ -82,6 +91,14 @@ export class TypeIt {
     if (this.option.autoPlay) {
       await this.#play()
     }
+  }
+
+  clear() {
+    this.pause()
+    this.cursor = 0
+    this.queue = []
+
+    this.renderer.clear?.()
   }
 
   async #prepareForPlay() {
@@ -95,18 +112,20 @@ export class TypeIt {
   }
 
   async #play() {
-    while (this.queue.length) {
+    while (this.cursor < this.queue.length) {
       // paused
       if (!this.isPlaying) {
         this.#ins?.resolve()
         break
       }
 
-      const item = this.queue.shift()!
+      const item = this.queue[this.cursor]
 
-      await this.renderer.render(item)
+      await this.renderer.render(item, this)
 
       await sleep(this.#getDelay(item))
+
+      this.cursor++
     }
 
     this.#ins?.resolve()
@@ -120,15 +139,15 @@ export class TypeIt {
     }
 
     switch (item.type) {
-      case 'invisible':
+      case TypeItemType.Invisible:
         return 0
-      case 'char':
-        return randomRange(10, 50)
-      case 'space':
+      case TypeItemType.Text:
+        return randomRange(30, 50)
+      case TypeItemType.Space:
         return randomRange(100, 100)
 
       default:
-        return 0
+        return randomRange(10, 50)
     }
   }
 }
