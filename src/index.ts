@@ -1,1 +1,2 @@
-export const hello = 'world'
+export * from './core'
+export * from './plugins'

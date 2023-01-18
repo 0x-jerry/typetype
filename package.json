@@ -1,13 +1,20 @@
 {
-  "name": "tpl-ts-sdk",
+  "name": "ticktick",
   "version": "0.0.0",
-  "description": "",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "description": "Type character effect",
+  "main": "src/index.ts",
   "type": "module",
   "engines": {
-    "node": ">= 14"
+    "node": ">= 18"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/0x-jerry/ticktick.git"
+  },
+  "bugs": {
+    "url": "https://github.com/0x-jerry/ticktick/issues"
+  },
+  "homepage": "https://github.com/0x-jerry/ticktick#readme",
   "scripts": {
     "test": "vitest run",
     "test:watch": "vitest",
@@ -19,21 +26,23 @@
   "author": "0x-jerry <x.jerry.wang@gmail.com>",
   "publishConfig": {
     "access": "public",
-    "registry": "https://registry.npmjs.org"
+    "registry": "https://registry.npmjs.org",
+    "main": "dist/index.js",
+    "typings": "dist/index.d.ts"
   },
   "files": [
     "dist"
   ],
   "devDependencies": {
     "@0x-jerry/x-release": "^0.3.6",
-    "@types/node": "^18.8.2",
-    "@vitest/coverage-c8": "^0.24.0",
-    "tsup": "^6.2.3",
-    "typescript": "^4.8.4",
-    "vitest": "^0.24.0",
-    "vitest-github-actions-reporter": "^0.8.3"
+    "@types/node": "^18.11.18",
+    "@vitest/coverage-c8": "^0.27.2",
+    "tsup": "^6.5.0",
+    "typescript": "^4.9.4",
+    "vitest": "^0.27.2",
+    "vitest-github-actions-reporter": "^0.9.0"
   },
   "dependencies": {
-    "@0x-jerry/utils": "^1.9.0"
+    "@0x-jerry/utils": "^1.13.0"
   }
 }
