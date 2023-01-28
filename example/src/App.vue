@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { TypeIt, createHtmlRenderer } from 'ticktick'
+import { TickTick, createHtmlRenderer } from 'ticktick'
 import { onMounted, reactive, ref } from 'vue'
 import { marked } from 'marked'
 
@@ -7,7 +7,7 @@ const el = ref<HTMLElement>()
 
 const renderer = createHtmlRenderer()
 
-const ti = new TypeIt({
+const tt = new TickTick({
   renderer,
 })
 
@@ -22,7 +22,7 @@ onMounted(() => {
 })
 
 function type() {
-  ti.type(marked(data.text))
+  tt.type(marked(data.text))
 }
 </script>
 
@@ -30,8 +30,8 @@ function type() {
   <div>
     <div class="desc">
       <strong> Type Test </strong>
-      <button @click="ti.play()">Play</button>
-      <button @click="ti.pause()">Pause</button>
+      <button @click="tt.play()">Play</button>
+      <button @click="tt.pause()">Pause</button>
       <button @click="type">Reset</button>
     </div>
 
