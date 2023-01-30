@@ -28,15 +28,15 @@ export interface TypeItem {
   delay?: number
 }
 
-export interface TickTickOption {
-  renderer?: TickTickRenderer
+export interface TickTickOption<T extends TickTickRenderer = TickTickRenderer> {
+  renderer?: T
   /**
    * @default true
    */
   autoPlay?: boolean
 }
 
-export class TickTick {
+export class TickTick<Renderer extends TickTickRenderer = TickTickRenderer> {
   queue: TypeItem[] = []
 
   isPlaying = false
@@ -52,12 +52,12 @@ export class TickTick {
     return this.#ins?.instance
   }
 
-  renderer: TickTickRenderer
+  renderer: Renderer
 
   option: Required<Omit<TickTickOption, 'renderer'>>
 
-  constructor(opt: TickTickOption = {}) {
-    this.renderer = opt.renderer || createTerminalRenderer()
+  constructor(opt: TickTickOption<Renderer> = {}) {
+    this.renderer = opt.renderer || (createTerminalRenderer() as Renderer)
 
     this.option = {
       autoPlay: opt.autoPlay ?? true,

@@ -5,10 +5,8 @@ import { marked } from 'marked'
 
 const el = ref<HTMLElement>()
 
-const renderer = createHtmlRenderer()
-
 const tt = new TickTick({
-  renderer,
+  renderer: createHtmlRenderer(),
 })
 
 const data = reactive({
@@ -16,7 +14,7 @@ const data = reactive({
 })
 
 onMounted(() => {
-  renderer.setup(el.value!)
+  tt.renderer.setup(el.value!)
 
   type()
 })
