@@ -45,6 +45,6 @@
     "vitest-github-actions-reporter": "^0.9.0"
   },
   "dependencies": {
-    "@0x-jerry/utils": "^1.13.0"
+    "@0x-jerry/utils": "^2.0.0"
   }
 }
